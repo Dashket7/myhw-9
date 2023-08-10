@@ -6,6 +6,30 @@ import org.junit.jupiter.params.ParameterizedTest;
 
 public class RadioTest {
     @Test
+    public void shouldFindNumberOfRadio() {
+        Radio radio = new Radio(20);
+
+        Assertions.assertEquals(20, radio.getNumberOfRadios());
+    }
+
+    @Test
+    public void findRadioWithoutParametrized() {
+        Radio radio = new Radio();
+
+        Assertions.assertEquals(10, radio.getNumberOfRadios());
+    }
+
+    @Test
+    public void prevRadioStationAfterMin() {
+        Radio radio = new Radio();
+        radio.setCurrentRadioNumber(0);
+        radio.prev();
+        int expected = 9;
+        int actual = radio.getCurrentRadioNumber();
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
     public void shouldFindRadioStation() {
         Radio radio = new Radio();
         radio.setCurrentRadioNumber(9);
@@ -15,8 +39,17 @@ public class RadioTest {
     }
 
     @Test
-    public void shouldFindRadioAboveMax() // выбор радио больше 9
-    {
+    public void shouldFindNextRadio() {
+        Radio radio = new Radio();
+        radio.setCurrentRadioNumber(0);
+        radio.next();
+        int expected = 1;
+        int actual = radio.getCurrentRadioNumber();
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldFindRadioAboveMax() {
         Radio radio = new Radio();
         radio.setCurrentRadioNumber(10);
         int expected = 0;
@@ -34,11 +67,20 @@ public class RadioTest {
     }
 
     @Test
-    public void shouldFindNextRadio() {
+    public void prevRadioStation() {
         Radio radio = new Radio();
-        radio.setCurrentRadioNumber(0);
-        radio.next();
-        int expected = 1;
+        radio.setCurrentRadioNumber(9);
+        radio.prev();
+        int expected = 8;
+        int actual = radio.getCurrentRadioNumber();
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldFindRadioAboveNumbersOfRadio() {
+        Radio radio = new Radio();
+        radio.setCurrentRadioNumber(11);
+        int expected = 0;
         int actual = radio.getCurrentRadioNumber();
         Assertions.assertEquals(expected, actual);
     }
@@ -51,28 +93,6 @@ public class RadioTest {
         int expected = 0;
         int actual = radio.getCurrentRadioNumber();
         Assertions.assertEquals(expected, actual);
-
-    }
-
-    @Test
-    public void prevRadioStation() {
-        Radio radio = new Radio();
-        radio.setCurrentRadioNumber(9);
-        radio.prev();
-        int expected = 8;
-        int actual = radio.getCurrentRadioNumber();
-        Assertions.assertEquals(expected, actual);
-    }
-
-    @Test
-    public void prevRadioStationAfterMin() {
-        Radio radio = new Radio();
-        radio.setCurrentRadioNumber(0);
-        radio.prev();
-        int expected = 9;
-        int actual = radio.getCurrentRadioNumber();
-        Assertions.assertEquals(expected, actual);
-
     }
 
     @Test
