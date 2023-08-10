@@ -3,6 +3,18 @@ package org.example;
 public class Radio {
     private int currentRadioNumber;
     private int currentVolume;
+    private int numberOfRadios = 10; //количество радио
+
+    public Radio(int numberOfRadios) {
+        this.numberOfRadios = numberOfRadios;
+    }
+
+    public Radio() {
+    }
+
+    public int getNumberOfRadios() {
+        return numberOfRadios;
+    }
 
     public int getCurrentRadioNumber() {
         return currentRadioNumber;
@@ -12,14 +24,14 @@ public class Radio {
         if (newCurrentRadioNumber < 0) {
             return;
         }
-        if (newCurrentRadioNumber > 9) {
+        if (newCurrentRadioNumber >= numberOfRadios) {
             return;
         }
         currentRadioNumber = newCurrentRadioNumber;
     }
 
     public void next() {
-        if (currentRadioNumber < 9) {
+        if (currentRadioNumber < numberOfRadios - 1) {
             currentRadioNumber++;
         } else currentRadioNumber = 0;
     }
